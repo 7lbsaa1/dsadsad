@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8fa" />
+  <meta name="description" content="حوّل صورك الشخصية إلى صور استوديو بخلفية بيضاء خلال ثوانٍ." />
+  <title>WhiteStudio AI — استوديو الصور الذكي</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="WhiteStudio AI">
+        <span class="brand-mark">W</span>
+        <span><strong>WhiteStudio</strong><small>AI PHOTO STUDIO</small></span>
+      </a>
+      <span class="privacy"><i></i> معالجة خاصة على جهازك</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="spark">✦</span> استوديو صورك الشخصي</div>
+        <h1>صورتك… <span>بمظهر احترافي</span></h1>
+        <p>ارفع صورتك، أزل الخلفية، واحصل على صورة شخصية بخلفية بيضاء وإضاءة متوازنة — بسهولة.</p>
+      </section>
+
+      <section class="workspace">
+        <div class="upload-panel" id="uploadPanel">
+          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+          <div class="upload-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 16.5v2A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg></div>
+          <h2>ابدأ بصورة واضحة</h2>
+          <p>اسحب الصورة إلى هنا أو اخترها من جهازك</p>
+          <button class="btn btn-primary" id="chooseBtn">اختيار صورة</button>
+          <span class="file-hint">JPG أو PNG أو WEBP · حتى 15 ميجابايت</span>
+        </div>
+
+        <div class="editor hidden" id="editor">
+          <div class="editor-head">
+            <div><span class="step-label">معاينة الصورة</span><h2>اضبط النتيجة كما تحب</h2></div>
+            <button class="text-btn" id="changePhoto">تغيير الصورة ↗</button>
+          </div>
+
+          <div class="preview-grid">
+            <div class="preview-card">
+              <div class="preview-title"><span>الصورة الأصلية</span><span class="tiny-tag">قبل</span></div>
+              <div class="image-stage original-stage"><img id="originalPreview" alt="الصورة الأصلية" /></div>
+            </div>
+            <div class="preview-card result-card">
+              <div class="preview-title"><span>النتيجة الاحترافية</span><span class="tiny-tag success">بعد</span></div>
+              <div class="image-stage result-stage" id="resultStage">
+                <div class="empty-result"><span>✦</span><p>ستظهر النتيجة هنا</p></div>
+                <img id="resultPreview" class="hidden" alt="الصورة بعد إزالة الخلفية" />
+              </div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label for="brightness">الإضاءة <output id="brightnessValue">105%</output></label>
+              <input id="brightness" type="range" min="80" max="125" value="105" />
+            </div>
+            <div class="control">
+              <label for="contrast">التباين <output id="contrastValue">105%</output></label>
+              <input id="contrast" type="range" min="85" max="125" value="105" />
+            </div>
+            <div class="control">
+              <label for="format">مقاس الصورة</label>
+              <select id="format">
+                <option value="original">الحفاظ على أبعاد الصورة</option>
+                <option value="portrait">صورة شخصية 3:4</option>
+                <option value="square">مربع 1:1</option>
+                <option value="passport">مقاس 4:6 تقريبي</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary process-btn" id="processBtn"><span>✦</span> إزالة الخلفية وتحسين الصورة</button>
+            <button class="btn btn-download" id="downloadBtn" disabled>تحميل الصورة <span>↓</span></button>
+          </div>
+          <div class="progress-wrap hidden" id="progressWrap">
+            <div class="progress-top"><span id="progressText">جاري تجهيز الصورة...</span><span id="progressPercent">0%</span></div>
+            <div class="progress-track"><div id="progressBar"></div></div>
+            <p>قد يستغرق التحميل الأول للنموذج بعض الوقت. اترك الصفحة مفتوحة.</p>
+          </div>
+          <p class="notice" id="notice">ملاحظة: النتيجة تعتمد على وضوح الصورة والإضاءة الأصلية. هذا الموقع لا يغيّر ملامح الوجه.</p>
+        </div>
+      </section>
+      <section class="features">
+        <div><span>01</span><strong>بسيط وسريع</strong><p>خطوات قليلة للوصول إلى صورة مرتبة.</p></div>
+        <div><span>02</span><strong>خصوصيتك أولاً</strong><p>تتم المعالجة داخل المتصفح ولا نرفع صورك إلى قاعدة بيانات.</p></div>
+        <div><span>03</span><strong>جاهزة للتحميل</strong><p>احفظ النتيجة بصيغة JPG بخلفية بيضاء.</p></div>
+      </section>
+    </main>
+    <footer><span>WhiteStudio AI</span><span>صُمم ليجعل صورك أكثر احترافية</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
